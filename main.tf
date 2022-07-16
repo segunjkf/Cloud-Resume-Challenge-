@@ -21,6 +21,15 @@ module "cloudfront" {
   domain_name_cf = module.s3.website_endpoint
   bucket_name = var.bucket_name
   
+ 
+}
 
-  
+module "dynamodb" {
+  source = "./modules/dynamo"
+ 
+}
+
+module "lambda" {
+  source = "./modules/lambda"
+ 
 }
