@@ -33,3 +33,11 @@ module "lambda" {
   source = "./modules/lambda"
  
 }
+
+module "Apigateway" {
+  source = "./modules/Apigateway"
+  lambda-arn = module.lambda.lambda_function_arn
+  intergation-url = module.lambda.lambda_function_intergation
+  lambda-arn2 = module.lambda.lambda_function_arn
+ # source_arn = "${aws_apigatewayv2_api.lambda-api.execution_arn}/*/*"
+}
