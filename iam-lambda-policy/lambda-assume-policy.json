@@ -1,20 +1,13 @@
 {
   "Version": "2012-10-17",
   "Statement": [
-    {
-      "Sid": "Stmt1644977450582",
-      "Action": "logs:*",
-      "Effect": "Allow",
-      "Resource": "*"
-    },
-    {
-      "Sid": "Stmt1645070408381",
-      "Action": [
-        "dynamodb:GetItem",
-        "dynamodb:UpdateItem"
-      ],
-      "Effect": "Allow",
-      "Resource": "*"
-    }
+      {
+          "Action": "sts:AssumeRole",
+          "Principal": {
+              "Service": "lambda.amazonaws.com"
+          },
+          "Effect": "Allow",
+          "Sid": ""
+      }
   ]
 }
