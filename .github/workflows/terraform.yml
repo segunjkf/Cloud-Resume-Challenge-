@@ -34,41 +34,22 @@ jobs:
     - name: Terraform Apply
       run: terraform apply -auto-approve 
       
+   
   deploy:
-    name: 'Sync'
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@master
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - uses: badsyntax/github-action-aws-s3@v1
-        name: Sync HTML files to S3
-        id: sync-html-s3
-        with:
-          bucket: 'my-bucket-us-east-1'
-          action: 'sync' # sync|clean
-          src-dir: './website' # required only if action is sync
-          files-glob: '**/*.html' # required only if action is sync
-          prefix: 'preview'
-          sync-strategy: |
-            ETag
-            Content-Type
-            Cache-Control
-          strip-extension-glob: '**/**.html'
-          cache-control: 'public,max-age=0,s-maxage=31536000,must-revalidate'
-
-      - name: Output Synced Files
-        run: |
-          echo "Synced object keys: $S3SyncedFiles"
+      - name: Sync to S3
+        uses: etc-tiago/aws-s3-website-action@main
         env:
-          # Use outputs from previous sync steps
-          S3SyncedFiles: ${{ steps.sync-html-s3.outputs.modified-keys }}
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_REGION: "eu-west-1"
+          AWS_BUCKET_NAME: ${{secrets.AWS_BUCKET_NAME}}
+          SOURCE: "./website/index.html"
+          TARGET: "./template/"
+          WITH_WEBSITE_HTML: true
        
       
 
