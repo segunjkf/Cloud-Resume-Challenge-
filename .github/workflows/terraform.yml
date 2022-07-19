@@ -41,9 +41,9 @@ jobs:
     - uses: actions/checkout@master
     - uses: awact/s3-action@master
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'
       env:
-        SOURCE_DIR: './website'
+        SOURCE_DIR: './website/index.html'
         AWS_REGION: 'eu-west-1'
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
