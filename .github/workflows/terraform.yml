@@ -43,7 +43,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'
       env:
-        SOURCE_DIR: 'index.html'
+        SOURCE_DIR: 'Website'
         AWS_REGION: 'eu-west-1'
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
