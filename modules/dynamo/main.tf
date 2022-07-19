@@ -27,8 +27,9 @@ resource "aws_dynamodb_table_item" "tableitem" {
  item =  <<ITEM
 {
   "id": {"N": "0"},
-  "visitcount": {"N": "0"}
+  
 }
 ITEM
+#"visitcount": {"N": "0"}
  # item = "${file("template/item-table.json")}"
 }
