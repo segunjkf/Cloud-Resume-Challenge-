@@ -18,7 +18,7 @@ Any push to Main branch will trigger the GitHub actions I created which will:
 
 #### high level description of functionality
 * S3 bucket hosts the website
-* certificates and permissions configured in AWS Route53, ACM, Policies
+* certificates and permissions configured in AWS Iam Policies
 * Cloudfront used to meet https requirement and cache control
 * DynamoDB and Lambda function used to implement visitor counter.
 * JS used to retreive counter value from API and display on site
