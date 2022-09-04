@@ -5,13 +5,12 @@ resource "aws_lambda_function" "lambda_function" {
   handler          = "lambda_function.lambda_handler"
   source_code_hash = filebase64sha256("lambda_function.zip")
   runtime          = "python3.8"
-
 }
+
 output "lambda_function_arn" {
   value = aws_lambda_function.lambda_function.arn
-
 }
+
 output "lambda_function_intergation" {
   value = aws_lambda_function.lambda_function.arn
-
 }

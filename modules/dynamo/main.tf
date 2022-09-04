@@ -4,10 +4,12 @@ resource "aws_dynamodb_table" "crc-table" {
   write_capacity = 1
   hash_key       = "id"
   billing_mode   = "PROVISIONED"
+  
   attribute {
     name = "id"
     type = "N"
   }
+
   global_secondary_index {
     name            = "idIndex"
     hash_key        = "id"
@@ -17,6 +19,7 @@ resource "aws_dynamodb_table" "crc-table" {
   }
 
 }
+
 resource "aws_dynamodb_table_item" "tableitem" {
   table_name = aws_dynamodb_table.crc-table.name
   hash_key   = aws_dynamodb_table.crc-table.hash_key

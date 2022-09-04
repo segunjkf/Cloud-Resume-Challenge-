@@ -2,6 +2,7 @@ resource "aws_apigatewayv2_api" "lambda-api" {
   name          = "lambda-http-api"
   protocol_type = "HTTP"
   target        = var.lambda-arn
+  
   cors_configuration {
     allow_origins = ["*"]
   }
@@ -15,6 +16,7 @@ resource "aws_apigatewayv2_integration" "api-intergation" {
   integration_uri      = var.intergation-url
   passthrough_behavior = "WHEN_NO_MATCH"
 }
+
 resource "aws_lambda_permission" "apigw" {
   action        = "lambda:InvokeFunction"
   function_name = var.lambda-arn2
