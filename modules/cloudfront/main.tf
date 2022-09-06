@@ -109,8 +109,6 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   enabled         = true
   is_ipv6_enabled = true
 
-
-
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]

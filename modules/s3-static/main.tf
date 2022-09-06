@@ -2,7 +2,9 @@ resource "aws_s3_bucket" "static" {
   bucket        = var.bucket_name
   acl           = "public-read"
   policy        = templatefile("template/s3-public-json.json", { bucket = var.bucket_name })
+  
   force_destroy = true
+
   cors_rule {
     allowed_headers = ["Authorization", "Content-Length"]
     allowed_methods = ["GET", "POST"]
